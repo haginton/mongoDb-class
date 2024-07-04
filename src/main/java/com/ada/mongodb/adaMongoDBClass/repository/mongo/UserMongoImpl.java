@@ -5,6 +5,7 @@ import com.ada.mongodb.adaMongoDBClass.repository.UserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserMongoImpl implements UserRepository {
@@ -50,5 +51,15 @@ public class UserMongoImpl implements UserRepository {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        Optional<User> userFound = userMongoRepository.findByEmail(email);
+        if (userFound.isPresent()){
+            return userFound.get();
+        }else{
+            return null;
+        }
     }
 }

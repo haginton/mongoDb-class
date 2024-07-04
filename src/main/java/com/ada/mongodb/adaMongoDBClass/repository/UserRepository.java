@@ -10,4 +10,5 @@ public interface UserRepository {
     User createUser(User user);
     Boolean updateUser(String idUser, User user);
     Boolean deleteUser(String idUser);
+    User findByEmail(String email);
 }
