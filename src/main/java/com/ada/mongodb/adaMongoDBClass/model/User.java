@@ -6,6 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Document(collection = "user_collection")
 public class User {
@@ -17,8 +21,10 @@ public class User {
     private String email;
     private LocalDateTime dateCreation;
     private LocalDateTime dateUpdate;
+    private List<RoleEnum> roles;
 
     public User() {
+        this.roles = new ArrayList<>(Collections.singleton(RoleEnum.USER));
     }
 
     public User(String username, String password, String email) {
@@ -26,6 +32,7 @@ public class User {
         this.password = new BCryptPasswordEncoder().encode(password);
         this.email = email;
         this.dateCreation = LocalDateTime.now();
+        this.roles = new ArrayList<>(Collections.singleton(RoleEnum.USER));
     }
 
     public User(UserRequestDto userRequestDto) {
@@ -33,6 +40,7 @@ public class User {
         this.password = new BCryptPasswordEncoder().encode(userRequestDto.getPassword());
         this.email = userRequestDto.getEmail();
         this.dateCreation = LocalDateTime.now();
+        this.roles = new ArrayList<>(Collections.singleton(RoleEnum.USER));
     }
 
     public String getIdUser() {
@@ -75,6 +83,14 @@ public class User {
         this.dateUpdate = dateUpdate;
     }
 
+    public List<RoleEnum> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEnum> roles) {
+        this.roles = roles;
+    }
+
     public void updateUser(User user){
         setUsername(user.getUsername());
         setPassword(user.getPassword());
@@ -91,6 +107,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", dateCreation=" + dateCreation +
                 ", dateUpdate=" + dateUpdate +
+                ", roles=" + roles +
                 '}';
     }
 }
