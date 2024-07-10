@@ -4,7 +4,7 @@ public interface Constants {
     String USER_NAME_KEY = "username";
     String CLAIMS_ROLES_KEY = "ada_roles";
 
-    int TOKEN_DURATION_MINUTES = 1440;
+    int TOKEN_DURATION_MINUTES = 2440;
 
     String ADMIN_ROLE = "ADMIN";
     String USER_ROLE = "USER";

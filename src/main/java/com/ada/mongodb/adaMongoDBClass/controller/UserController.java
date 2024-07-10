@@ -20,7 +20,15 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponseDto>> getAllUsers(){
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+        try{
+            List<UserResponseDto> usersFound = userService.getAllUsers();
+            if (usersFound.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+        }catch (RuntimeException e){
+            return new ResponseEntity("An error has occurred during the execution", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
