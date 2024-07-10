@@ -71,4 +71,17 @@ class UserControllerTest {
         Assertions.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
+    /*
+        public void find_user_by_id_existing_test()
+        public void find_user_by_id_not_found_test()
+        public void create_user_success_test()
+        public void create_user_failure_test()
+        public void update_user_success_test()
+        public void update_user_not_found_test()
+        public void update_user_exception_test()
+        public void delete_user_success_test()
+        public void delete_user_not_found_test()
+        public void delete_user_exception_test()
+     */
+
 }
